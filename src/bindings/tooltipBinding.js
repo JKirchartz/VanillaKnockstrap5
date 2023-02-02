@@ -18,6 +18,7 @@
 
         if (!tooltipData) {
             $element.tooltip(options);
+            //var tooltip = new bootstrap.Tooltip($element, options)
         } else {
             ko.utils.extend(tooltipData.options, options);
         }

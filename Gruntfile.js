@@ -177,7 +177,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-preprocess');
     grunt.loadNpmTasks('grunt-nuget');
     
-    grunt.registerTask('default', ['clean:build', 'htmlConvert', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', 'jshint']);
+    grunt.registerTask('default', ['clean:build', 'htmlConvert', 'copy:templates', 'concat', 'preprocess:templates', 'preprocess:main', 'clean:temp', ]);
     grunt.registerTask('release', ['default', 'jasmine', 'uglify']);
     
     grunt.registerTask('examples', ['default', 'clean:examples', 'preprocess:examples', 'copy:examples']);

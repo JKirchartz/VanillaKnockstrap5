@@ -30,7 +30,7 @@
             }
         }
     },
-
+    modalInstance : {},
     init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var $element = $(element),
             value = valueAccessor(),
@@ -71,7 +71,9 @@
         ko.renderTemplate('modal', bindingContext.createChildContext(model), { templateEngine: ko.stringTemplateEngine.instance }, element);
 
         $element.addClass(defaults.css).attr(defaults.attributes);
-        $element.modal(options);
+        // $element.modal(options);
+
+        viewModel.modalInstance = new bootstrap.Modal($element, options);
 
         $element.on(events.shown, function () {
             if (typeof value.visible !== 'undefined' && typeof value.visible === 'function' && !ko.isComputed(value.visible)) {
@@ -95,11 +97,15 @@
         return { controlsDescendantBindings: true };
     },
 
-    update: function (element, valueAccessor) {
+    update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
         var value = valueAccessor();
-
         if (typeof value.visible !== 'undefined') {
-            $(element).modal(!ko.unwrap(value.visible) ? 'hide' : 'show');
+            if (ko.unwrap(value.visible)){
+                viewModel.modalInstance.show();
+            }
+            else {
+                viewModel.modalInstance.hide();
+            }
         }
     }
 };
